@@ -42,7 +42,7 @@ mysqli_close($conn);
                         </ul>
                     </div>
                     <div class="card-action right-align">
-                        <a href="#" class="brand-text"> More Info</a>
+                        <a href="detials.php?id=<?php echo $x['id'] ?>" class="brand-text"> More Info</a>
                     </div>
                 </div>
             </div>
