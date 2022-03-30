@@ -1,3 +1,12 @@
+<?php
+session_start();
+$name = $_SESSION['name'];
+
+//cookies
+
+$ginder = $_COOKIE['ginder'] ;
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,7 +38,10 @@
                 Logo
             </a>
             <ul id="nav-mobile" class="right hide-on-small-and-down">
+                <li class="grey-text"> Hellow <?php echo htmlspecialchars($name);  ?> </li>
+                <li class="grey-text"> (<?php echo htmlspecialchars($ginder); ?>)</li>
                 <li><a href="add.php" class="btn brand z-depth-0"> Add Categories</a> </li>
+
             </ul>
         </div>
     </nav>

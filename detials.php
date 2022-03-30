@@ -2,6 +2,20 @@
 
 include('./config/db_connect.php');
 
+if (isset($_POST['delete'])) {
+
+    $id_to_delete = mysqli_real_escape_string($conn, $_POST['id_to_delete']);
+    $sql = " DELETE  FROM pizaa WHERE id = $id_to_delete";
+
+    if (mysqli_query($conn, $sql)) {
+        //success
+        header('location: index.php'); //to redirect page
+    } {
+        //failure
+        echo 'query error: ' . mysqli_error($conn);
+    }
+}
+
 //check Get Requst Id Param
 if (isset($_GET['id'])) {
     $id = mysqli_real_escape_string($conn, $_GET['id']);
@@ -40,6 +54,13 @@ if (isset($_GET['id'])) {
                 <li> <?php echo htmlspecialchars($ing); ?></li>
             <?php endforeach; ?>
         </ul>
+        <!-- delete form -->
+        <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
+            <input type="hidden" name="id_to_delete" value="<?php echo $pizza['id'] ?>">
+            <input type="submit" name="delete" value="Delete" class="btn brand z-depth-0">
+        </form>
+        <!-- delete form -->
+
     <?php else : ?>
         <h6 class="red-text"> No Such Pizaa Exist</h6>
     <?php endif ?>
